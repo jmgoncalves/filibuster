@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <title>Chat</title>
+  <link rel="stylesheet" href="res/style.css">
+</head>
+<body>
+  <!-- left pane -->
+  <div id="roster-area">
+    <div id="lnk-profile">
+      <a href="#profile" class="roster-contact offline">offline</a>
+      <input type="text" id="omnibar">
+    </div>
+    <ul></ul>
+  </div>
+
+  <!-- main pane -->
+  <div id="chat-area">
+    <div id="profile">
+      <!-- login -->
+      <div id="login">
+        <p><label>JID:</label><input type="text" id="jid"/></p>
+        <p><label>Password:</label><input type="password" id="password"/></p>
+        <p><a href="#login"><span>Log In</span></a></p>
+        <p class="error-message"></p>
+      </div>
+      <!-- connected -->
+      <div id="connected" class="hidden">
+        <p><a href="#logout" id="logout"><span>Log Out</span></a></p>
+        <div class="user-info">
+          <img class="contact-image" src="./res/img/default.png"/>
+          <p class="jid-display"></p>
+          <p class="full-name"><label>Full Name:</label><input type="text"/></p>
+          <p class="nickname"><label>Nickname:</label><input type="text"/></p>
+          <p><a href="#update-vcard" id="update-vcard"><span>Update vCard</span></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- handlebars templates -->
+<script id="contact-template" type="text/x-handlebars-template">
+  <li id="roster-{{jid_id}}">
+    <a href="#{{jid_id}}" class="roster-contact offline">{{name}}</a>
+  </li>
+</script>
+
+<script id="chat-template" type="text/x-handlebars-template">
+  <div id="chat-{{jid_id}}" class="hidden">
+      <div class="user-info">
+        <img class="contact-image" src="{{image}}"/>
+        <p class="jid-display">{{jid}}</p>
+        <p class="full-name">Full Name: {{fn}}</p>
+        <p class="nickname">Nickname: {{nickname}}</p>
+      </div>
+      <div class="chat-messages"></div>
+      <input type="text" class="chat-input">
+  </div>
+</script>
+
+<script id="inbound-subscription-template" type="text/x-handlebars-template">
+  <div class="inbound">
+      <p>{{jid}} requested to be added to your contacts</p>
+      <p><a href="#accept" class="accept-subscription"><span>Accept</span></a></p>
+      <p><a href="#reject" class="reject-subscription"><span>Reject</span></a></p>
+  </div>
+</script>
+
+<script id="chat-message-template" type="text/x-handlebars-template">
+  <div class="chat-message">&lt;<span class="chat-name">{{name}}</span>&gt;<span class="chat-text">{{body}}</span></div>
+</script>
+
+
+<script id="chat-event-template" type="text/x-handlebars-template">
+  <div class="chat-event">{{name}} is typing...</div>
+</script>
+
+<!-- js libs -->
+<script src="lib/jquery-1.11.0.js"></script>
+<script src="lib/handlebars-v1.3.0.js"></script>
+<script src="lib/strophe-1.1.3.js"></script>
+<script src="lib/strophe.vcard.js"></script>
+
+<!-- js code -->
+<script src="src/core.js"></script>
+<script src="src/comms.js"></script>
+<script src="src/view.js"></script>
+<script src="src/filibuster.js"></script>
+
+<!-- init -->
+<script>Filibuster.init({
+  url: 'http://societies.local/bosh/',
+  debug: true
+});</script>
+</html>

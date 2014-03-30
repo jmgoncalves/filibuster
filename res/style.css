@@ -1,0 +1,117 @@
+/* General */
+body {
+    font-family: Helvetica;
+    font-size: 12px;
+}
+
+input {
+    font-family: Helvetica;
+    font-size: 12px;
+}
+
+a {
+    display: block
+}
+
+.hidden {
+    display: none
+}
+
+/* Roster */
+#roster-area {
+    float: left;
+    vertical-align: top;
+    width: 200px;
+    height: 100%;
+    margin-right: 20px;
+}
+
+#roster-area input {
+    width: 100%;
+}
+
+#roster-area ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.roster-contact {
+    padding: 3px;
+}
+
+.roster-contact:hover {
+    background-color: #ddd;
+    color: white;
+}
+
+.online {
+    color: #3c3;
+}
+
+.away {
+    color: #cc3;
+}
+
+.dnd {
+    color: #c33;
+}
+
+.pending-inbound {
+    color: #33c;
+}
+
+.pending-outbound {
+    color: #55e;
+}
+
+.offline {
+    color: #ccc;
+}
+
+.error-message {
+    color: #c33;
+}
+
+/* Chat */
+#chat-area {
+    overflow: hidden; 
+    vertical-align: top;
+    width: auto;
+    height: 100%;
+}
+
+.user-info {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.contact-image {
+    height: 100px;
+    float: left;
+    margin-right: 20px;
+}
+
+.chat-messages {
+    height: 180px;
+    border-bottom: solid 2px #ddd;
+    overflow: auto;
+}
+
+#chat-area input.chat-input {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.chat-name {
+    color: #c33;
+}
+
+.chat-message .me {
+    color: #33c;
+}
+
+.chat-event {
+    font-style: italic;
+}
+
