@@ -160,7 +160,6 @@ var Comms = (function(self, Core, Strophe, $) {
                 Core.updateContact(jid_id, jid, name, Core.subscriptionStatus.REMOVE);
             else {
                 Core.updateContact(jid_id, jid, name, Core.subscriptionStatus.SUBSCRIBED);
-                //self.getVCardInfo(jid_id); // TODO better interaction
                 self.vcardQueue.push(jid_id);
             }
         });
@@ -329,7 +328,7 @@ var Comms = (function(self, Core, Strophe, $) {
     };
 
     self.setVCardInfo = function (ev, fullName, nickname) {
-        var vcard = new VCard();
+        var vcard = new self.connection.vcard.VCard();
         vcard.fn = fullName;
         vcard.nickname = nickname;
         self.connection.vcard.set(vcard, function(result){
