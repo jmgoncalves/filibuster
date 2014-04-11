@@ -4,7 +4,7 @@ Filibuster
 Intro
 -----
 
-Filibuster is a web-based XMPP client by jmgoncalves
+Filibuster is a web-based XMPP client by jmgoncalves. It uses Strophe, jQuery and Handlebars.js.
 
 Configure BOSH Endpoint
 -----------------------
