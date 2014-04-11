@@ -394,19 +394,19 @@ var View = (function(self, Core, $, Handlebars) {
         var profileDiv = $('#connected .user-info');
 
         // full name
-        if (Core.me.fn !== null)
+        if (Core.me.fn !== undefined)
             profileDiv.find('.full-name input').val(Core.me.fn);
         else
             profileDiv.find('.full-name input').val('');
 
         // nickname
-        if (Core.me.fn !== null)
+        if (Core.me.fn !== undefined)
             profileDiv.find('.nickname input').val(Core.me.nickname);
         else
             profileDiv.find('.nickname input').val('');
         
         // image
-        if (Core.me.image !== null)
+        if (Core.me.image !== undefined)
             profileDiv.find('.contact-image').attr('src', Core.me.image);
         else
             profileDiv.find('.contact-image').attr('src', self.defaultImageSrc);

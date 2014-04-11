@@ -323,57 +323,19 @@ var Comms = (function(self, Core, Strophe, $) {
             jid = Core.contactList[jid_id].jid;
 
         if (jid !== null)
-            self.connection.vcard.get(function(stanza) {
-                var $vCard = $(stanza).find("vCard");
-                
-                // full name
-                var fn = $vCard.find('FN');
-                console.log(fn);
-                if (fn.length === 1)
-                    fn = fn.text();
-                else
-                    fn = null;
-                
-                // nickname
-                var nickname = $vCard.find('NICKNAME');
-                if (nickname.length === 1)
-                    nickname = nickname.text();
-                else
-                    nickname = null;
-
-                // image
-                var image = $vCard.find('BINVAL');
-                if (image.length === 1)
-                    image = 'data:'+$vCard.find('TYPE').text()+';base64,'+image.text();
-                else
-                    image = null;
-
-                // update
-                Core.updateVcard(jid_id, fn, nickname, image);
-            }, jid);
+            self.connection.vcard.get(jid, function(vc) {
+                Core.updateVcard(jid_id, vc.fn, vc.nickname, vc.image);
+            });
     };
 
     self.setVCardInfo = function (ev, fullName, nickname) {
-        //var vcard = $('<vCard/>');
-        //vcard.attr('xmlns','vcard-temp');
-        //vcard.append('<FN>'+fullName+'</FN>');
-        //vcard.append('<NICKNAME>'+nickname+'</NICKNAME>');
-        //vcard.append('<BDAY>2014-03-04</BDAY>');
-        //vcard.append('<PHOTO><TYPE>image/png</TYPE><BINVAL></BINVAL></PHOTO>');
-        var vcard = $($.parseXML('<FN>'+fullName+'</FN>'));
-        self.connection.vcard.set(self.setVCardInfoSuccess, vcard.children()[0], Core.me.jid, self.setVCardInfoError);
+        var vcard = new VCard();
+        vcard.fn = fullName;
+        vcard.nickname = nickname;
+        self.connection.vcard.set(vcard, function(result){
+            Core.updateVcard(null, fullName, nickname, undefined);
+        });
     };
-
-    self.setVCardInfoSuccess = function () {
-        console.log('sucess!');
-        console.log(arguments);
-    };
-
-    self.setVCardInfoError = function () {
-        console.log('error!');
-        console.log(arguments);
-    };
-
 
     /** Function: init
      *  Initialize Comms: register to Core events and unload

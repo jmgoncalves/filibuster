@@ -35,9 +35,9 @@ var Core = (function(self, $) {
     self.me = {
         jid: null,
         name: null,
-        fn: null,
-        nickname: null,
-        image: null,
+        fn: undefined,
+        nickname: undefined,
+        image: undefined,
         resource: null,
         otherResources: []
     };
@@ -171,9 +171,9 @@ var Core = (function(self, $) {
             self.me.image = image;
 
             // update name
-            if (fn !== null)
+            if (fn !== undefined)
                 self.me.name = fn;
-            if (nickname !== null)
+            if (nickname !== undefined)
                 self.me.name = nickname;
 
             $(document).trigger(Core.events.UPDATE_PROFILE);
@@ -183,14 +183,14 @@ var Core = (function(self, $) {
             self.contactList[jid_id].vcard.image = image;
 
             // update name
-            if (fn !== null)
+            if (fn !== undefined)
                 self.contactList[jid_id].name = fn;
-            if (nickname !== null)
+            if (nickname !== undefined)
                 self.contactList[jid_id].name = nickname;
 
             $(document).trigger(Core.events.UPDATE_CONTACT_INFO, jid_id);
 
-            if (fn !== null || nickname !== null)
+            if (fn !== undefined || nickname !== undefined)
                 $(document).trigger(Core.events.UPDATE_CONTACT, jid_id);
         }
     };
