@@ -302,6 +302,9 @@ var Comms = (function(self, Core, Strophe, $) {
             'type': 'unsubscribed'}));
     };
 
+    /** Function: handleVCardQueue
+     *  TODO
+     */
     self.handleVCardQueue = function () {
         if (self.vcardQueue.length > 0) {
             self.getVCardInfo(self.vcardQueue.pop());
@@ -312,6 +315,12 @@ var Comms = (function(self, Core, Strophe, $) {
         }
     };
 
+    /** Function: getVCardInfo
+     *  TODO
+     *
+     *  Parameters:
+     *   (String) jid_id - local id of the user, based on his JID
+     */
     self.getVCardInfo = function (jid_id) {
         var jid = null;
 
@@ -327,6 +336,14 @@ var Comms = (function(self, Core, Strophe, $) {
             });
     };
 
+    /** Function: setVCardInfo
+     *  TODO
+     *
+     *  Parameters:
+     *   (Object) ev - event object
+     *   (String) fullname - 
+     *   (String) nickname - 
+     */
     self.setVCardInfo = function (ev, fullName, nickname) {
         var vcard = new self.connection.vcard.VCard();
         vcard.fn = fullName;

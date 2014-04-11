@@ -390,6 +390,12 @@ var View = (function(self, Core, $, Handlebars) {
             console.log('%c'+ev.type+' in '+$(elem)[0].outerHTML, 'color: purple');
     };
 
+    /** Function: updateProfile
+     *  TODO
+     *
+     *  Parameters:
+     *   (Object) ev - event object
+     */
     self.updateProfile = function(ev) {
         var profileDiv = $('#connected .user-info');
 
@@ -415,6 +421,9 @@ var View = (function(self, Core, $, Handlebars) {
         $('#lnk-profile a').text(Core.me.name);
     };
 
+    /** Function: setVcardInfo
+     *  TODO
+     */
     self.setVcardInfo = function() {
         var profile = $('#connected .user-info');
         $(document).trigger(Core.events.SET_PROFILE, [ 
